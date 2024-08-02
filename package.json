@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "./node_modules/.bin/tsc",
-    "dev": "nodemon index.ts",
+    "dev": "tsx watch index.ts",
     "start": "yarn build && mkdirp dist/public && echo '<h1>SMS API production server </h1> <i>debug features no longer available</i>'>dist/public/index.html && node ./dist/index.ts ts-node-esm index.ts",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint --fix"
@@ -14,13 +14,13 @@
   "devDependencies": {
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",
+    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/lodash": "^4.17.7",
     "@types/node": "^22.0.0",
     "@types/pg": "^8.11.6",
     "nodemon": "^3.1.4",
-    "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   },
   "dependencies": {
