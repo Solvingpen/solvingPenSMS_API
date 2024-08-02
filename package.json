@@ -5,11 +5,13 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "./node_modules/.bin/tsc",
+    "build": "tsc",
+    "prestart": "npm run build",
     "dev": "tsx watch index.ts",
     "start": "yarn build && mkdirp dist/public && echo '<h1>SMS API production server </h1> <i>debug features no longer available</i>'>dist/public/index.html && node ./dist/index.ts ts-node-esm index.ts",
     "lint": "eslint . --ext .js,.ts",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "postinstall": "tsc"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.7",
