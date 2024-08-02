@@ -2,10 +2,11 @@ import { NextFunction, Request, Response } from "express";
 import { AuthService } from "../services/auth.service";
 import { DataResponse } from "../../util/types";
 import dotenv from "dotenv";
+import jwt from "jsonwebtoken"
 
 
 
-const jwt = require("jsonwebtoken");
+//const jwt = require("jsonwebtoken");
 const env = dotenv.config();
 const sk = process.env.JWT_KEY;
 
@@ -27,7 +28,7 @@ export class AuthController extends AuthService {
 		this._createUser(email, phoneNumber, password, firstName, lastName).then((resp: DataResponse) => {
 			res.status(resp.status).json({
 				success: true,
-				token: jwt.sign({ email, lastName, firstName,password,phoneNumber }, sk),
+				token: jwt.sign({ email, lastName, firstName,password,phoneNumber }, sk as string),
 				msg: "User created successfully!"
 			});
 		}).catch((resp) => {

@@ -11,8 +11,8 @@ const app = express();
 
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, "public")));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(process.cwd(), "public")));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const prefix = "/api/v1";
