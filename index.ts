@@ -3,7 +3,7 @@ import cors from "cors";
 import * as bodyParser from "body-parser";
 import dotenv from "dotenv";
 import path from "path";
-import { Client } from 'pg';
+import AuthRouter from "./src/routes/auth.route";
 
 
 const env = dotenv.config();
@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 const prefix = "/api/v1";
+app.use(prefix, AuthRouter);
 
 app.get("/", (req, res) => {
 	const fileDirectory = path.resolve(__dirname, ".", "public/");
