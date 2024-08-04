@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
-import * as bodyParser from "body-parser";
+//import * as bodyParser from "body-parser";
 import dotenv from "dotenv";
 import path from "path";
-import AuthRouter from "./src/routes/auth.route";
+import AuthRouter from "./routes/auth.route";
 
 
 const env = dotenv.config();

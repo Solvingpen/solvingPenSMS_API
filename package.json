@@ -1,14 +1,15 @@
 {
   "name": "sms_api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "license": "MIT",
-  "type": "module",
+
   "scripts": {
-    "build": "tsc",
+    "build": "npm run clean && tsc",
+    "clean": "rimraf ./build",
     "prestart": "npm run build",
-    "dev": "tsx watch index.ts",
-    "start": "yarn build && mkdirp dist/public && echo '<h1>SMS API production server </h1> <i>debug features no longer available</i>'>dist/public/index.html && node ./dist/index.ts ts-node-esm index.ts",
+    "dev": "tsx watch src/index.ts",
+    "start": "npm run build && node dist/src/index.js",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint --fix",
     "postinstall": "tsc"
@@ -23,6 +24,9 @@
     "@types/node": "^22.0.0",
     "@types/pg": "^8.11.6",
     "nodemon": "^3.1.4",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   },
   "dependencies": {
