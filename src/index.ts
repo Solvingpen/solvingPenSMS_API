@@ -28,6 +28,16 @@ app.get("/", (req, res) => {
 	});
 });
 
+app.get("/api/v1/docs", (req, res) => {
+	const fileDirectory = path.resolve(__dirname, ".", "../public/");
+
+	res.sendFile("/docs/api.yml", { root: fileDirectory }, (err) => {
+		res.end();
+
+		if (err) throw err;
+	});
+});
+
 const PORT  = process.env.PORT || 3035
 
 app.listen(PORT, () => {
