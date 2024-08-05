@@ -108,7 +108,8 @@
   "include": [
       "src",
       ".ts",
-      "package.json"
+      "package.json",
+      "public"
   ]
 
 }
