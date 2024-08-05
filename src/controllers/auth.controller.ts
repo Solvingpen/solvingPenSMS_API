@@ -21,7 +21,7 @@ export class AuthController extends AuthService {
 	 */
 
     createUser = (req: Request, res: Response, next: NextFunction): void => {
-		console.log("secret key:" + sk);
+		//console.log("secret key:" + sk);
 
 		const { firstName, lastName, email, phoneNumber, password } = req.body;
 		console.log(req.body);

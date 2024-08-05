@@ -15,10 +15,11 @@ export class Middleware {
 
     checkToken = (req: Request, res: Response, next: NextFunction) => {
 		const { token } = req.headers;
+		console.log(`token header is ${token}`)
 
-		jwt.verify(token, sk, (err: Error, decoded: any) => {
+		jwt.verify(token, sk, (err: Error, decoded: any) => { 
 			if (err) {
-				res.status(400).json({
+				res.status(403).json({
 					success: false,
 					msg: "invalid token"
 				});
