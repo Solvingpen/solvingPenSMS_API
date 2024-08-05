@@ -29,8 +29,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/v1/docs", (req, res) => {
-	const fileDirectory = path.resolve(__dirname, ".", "../public/");
-
+	const fileDirectory = path.resolve(__dirname, ".", "../public");
+    console.log(fileDirectory)
 	res.sendFile("/docs/api.yml", { root: fileDirectory }, (err) => {
 		res.end();
 
