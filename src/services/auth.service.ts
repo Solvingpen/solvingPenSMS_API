@@ -53,4 +53,46 @@ export class AuthService {
 		});
 	};
 
+
+	_loginUser = async (email: string, password: string): Promise<DataResponse> => {
+		console.log("inside the service");
+		return new Promise(async (resolve, reject) => {
+			if (!email || !password) {
+				reject({ status: 403, msg: "Error data. parameter(s) is empty!" });
+				return
+			}
+
+			 //let decrypted = Buffer.from(encrypted, 'base64').toString('binary');
+			 var encode = crypto.randomBytes(5).toString('hex');
+			AuthMap(database);
+			AuthModel.findOne({
+				where: {email:email}
+			}).then((result) => {
+				//new AuthEmail().createEmail(encode,email);
+				console.log(result!.dataValues)
+				const mPassword = result!.dataValues.password
+				console.log(mPassword)
+				console.log(password)
+				const decrypted =  Buffer.from(mPassword, 'base64').toString('binary');
+				console.log(decrypted)
+				if(decrypted === password){
+					console.log("Correct pass!")
+				}else{
+					reject({ status: 403, msg: "Incorrect email or Password" });
+				}
+				resolve({ data: result, status: 201, msg: "user created!" });
+			})
+				.catch((err) => {
+					console.log(`Error here is ${err}`)
+					if(err.toString().includes("TypeError") )
+							reject({ status: 403, msg: "No Such User!" });
+					else {
+						reject({ status: 403, msg: "OOP! Error occured" });
+					}
+				});
+			// newUser = result.dataValues as User;
+
+		});
+	};
+
 }

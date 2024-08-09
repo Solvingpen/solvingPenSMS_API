@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 import AuthRouter from "./routes/auth.route";
+import AppError from "../util/appError";
 
 
 const env = dotenv.config();
@@ -17,6 +18,10 @@ app.use(express.json());
 
 const prefix = "/api/v1";
 app.use(prefix, AuthRouter);
+
+app.all('*', (req, res, next) => {
+	next(new AppError(`Path ${req.originalUrl} is not defined on this server.`, 404));
+});
 
 app.get("/", (req, res) => {
 	const fileDirectory = path.resolve(__dirname, ".", "public/");

@@ -39,6 +39,24 @@ export class AuthController extends AuthService {
 		});
 	};
 
+	login = (req: Request, res: Response, next: NextFunction): void => {
+		//console.log("secret key:" + sk);
+		const {email, password } = req.body;
+		this._loginUser(email, password).then((resp: DataResponse) => {
+			const token = jwt.sign({ email: email, dateCreated: new Date() }, sk as string)
+			res.status(resp.status).json({
+				success: true,
+				token,
+				msg: "Login successful"
+			});
+		}).catch((resp) => {
+			res.status(parseInt(resp.status)).json({
+				success: false,
+				msg: resp["msg"],
+			});
+		});
+	};
+
 
 }
 
